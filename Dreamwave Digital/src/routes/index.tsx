@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import * as React from "react";
 import heroBeach from "@/assets/hero-beach.jpg";
 import hackCollage from "@/assets/hack-collage.jpg";
 import beachKit from "@/assets/beach-kit.png";
@@ -28,7 +29,12 @@ import {
   Palette,
   DollarSign,
   Zap,
+  ChevronDown,
+  Star,
+  Lightbulb,
+  Users,
 } from "lucide-react";
+import { speakerGrads, homeSpeakers, getInitials } from "@/lib/voices";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -92,27 +98,7 @@ const peek = [
   { cap: "Cohort pic", grad: "from-[oklch(0.75_0.18_350)] to-[oklch(0.6_0.2_320)]", emoji: "💖" },
 ];
 
-const speakerGrads = [
-  "from-[oklch(0.78_0.2_40)] to-[oklch(0.65_0.22_15)]",
-  "from-[oklch(0.7_0.2_320)] to-[oklch(0.55_0.2_290)]",
-  "from-[oklch(0.82_0.16_55)] to-[oklch(0.7_0.21_25)]",
-  "from-[oklch(0.75_0.18_350)] to-[oklch(0.6_0.2_320)]",
-  "from-[oklch(0.7_0.18_15)] to-[oklch(0.5_0.18_350)]",
-  "from-[oklch(0.8_0.14_45)] to-[oklch(0.65_0.2_10)]",
-  "from-[oklch(0.72_0.18_300)] to-[oklch(0.5_0.16_270)]",
-  "from-[oklch(0.85_0.13_60)] to-[oklch(0.7_0.2_30)]",
-];
-
-const speakers = [
-  { n: "Anika Rao", r: "Founder, NovaAgents" },
-  { n: "Maya Iyer", r: "AI Researcher, OpenLab" },
-  { n: "Zara Khan", r: "DevRel, ToolForge" },
-  { n: "Priya Menon", r: "Founder, ShipWeekly" },
-  { n: "Riya Das", r: "Engineer, Anthropic" },
-  { n: "Tara Singh", r: "Investor, Beach Cap" },
-  { n: "Lina Park", r: "Founder, Yappers.ai" },
-  { n: "Noor Ahmed", r: "PM, Agentic Labs" },
-];
+const speakers = homeSpeakers;
 
 const partnersList = [
   { n: "DoraDAO", kind: "Company" },
@@ -129,10 +115,37 @@ const partnersList = [
 
 const socials = [
   { label: "Discord", href: "https://discord.gg/CRaEtrtZ2v" },
-  { label: "Twitter", href: "https://x.com/dora_dao" },
+  { label: "Twitter", href: "https://x.com/connectdoradao" },
   { label: "Instagram", href: "https://www.instagram.com/connectdoradao/" },
   { label: "LinkedIn", href: "https://www.linkedin.com/company/doradao/" },
   { label: "Luma", href: "https://lu.ma/Doradao" },
+];
+
+const whatToExpect = [
+  { icon: Mic, title: "Creator & founders-led sessions", desc: "Learn from the best in the creator economy" },
+  { icon: Code2, title: "AI + content + product thinking", desc: "Hands-on workshops on AI tools and applications" },
+  { icon: Zap, title: "Weekly challenges", desc: "Build momentum with community-driven tasks" },
+  { icon: Star, title: "UGC content creation", desc: "Master the art of creating engaging content" },
+  { icon: Rocket, title: "Build real products", desc: "Go from idea to shipped product in weeks" },
+  { icon: Trophy, title: "Launch publicly", desc: "Ship on Product Hunt, Peerlist & beyond" },
+];
+
+const timelineEvents = [
+  { date: "3rd June", title: "Applications Open", desc: "GWY Fellowship Application Registration Open" },
+  { date: "15th June", title: "Fellowship Kickoff", desc: "Founder-led sessions, creator talks, weekly challenges and hands-on learning begin" },
+  { date: "15th July", title: "Application Close", desc: "The final cohort gets selected based on creativity, ideas and builder energy" },
+  { date: "5th-8th Aug", title: "72 hours Hackathon", desc: "Build, ship and Launch on Product Hunt, Peerlist etc. User Acquisition Challenges" },
+  { date: "25th July", title: "Offline Experience", desc: "Top 50 creators move into the offline experience" },
+  { date: "25th Aug", title: "Offline 1 Week Cohort", desc: "Top 50 Creators will work on launching products, Networking & demos" },
+  { date: "31st Aug", title: "Graduation", desc: "Showcase your products, celebrate your journey and launch your ideas into the world" },
+];
+
+const faqs = [
+  { q: "Why should you join now?", a: "Creator economy is $250B+. 75% women feel tech-excluded. 90% creators lack ownership. 2× growth comes via communities. Girls Who Yap fills that gap with community, tools, and vibe." },
+  { q: "Why should you join GWY?", a: "This is a creator-first space built for women across diverse walks of life: creators, storytellers, founders, professionals, artists, community builders, and anyone intentionally shaping a personal brand." },
+  { q: "Who are we looking for?", a: "Someone who naturally brings people together, believes in the power of community, is building (or wants to build) in public, cares about creating meaningful experiences, and can take ownership and execute independently." },
+  { q: "What if I'm not technical?", a: "Perfect! We welcome creators, marketers, PMs, designers, and anyone curious about AI. No coding experience required." },
+  { q: "Is there a fee?", a: "Applications open to all. Join the Discord to stay updated on pricing and fellowship details." },
 ];
 
 function Chapter({
@@ -217,6 +230,24 @@ function Stars() {
   );
 }
 
+function FAQItem({ question, answer }: { question: string; answer: string }) {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <button
+      onClick={() => setOpen(!open)}
+      className="w-full text-left rounded-3xl bg-faq-soft border border-white/70 p-6 hover:bg-white/90 hover:-translate-y-0.5 transition group"
+    >
+      <div className="flex items-start justify-between gap-4">
+        <h4 className="font-display font-semibold text-lg text-foreground text-left">{question}</h4>
+        <ChevronDown className={`h-5 w-5 text-coral shrink-0 transition-transform ${open ? "rotate-180" : ""}`} />
+      </div>
+      {open && (
+        <p className="text-sm text-foreground/70 mt-4 leading-relaxed text-left">{answer}</p>
+      )}
+    </button>
+  );
+}
+
 function Landing() {
   return (
     <div className="relative min-h-screen overflow-hidden bg-journey text-foreground">
@@ -240,6 +271,7 @@ function Landing() {
               <a href="#hack" className="hover:text-foreground transition">Hack</a>
               <a href="#speakers" className="hover:text-foreground transition">Voices</a>
               <a href="#partners" className="hover:text-foreground transition">Partners</a>
+              <a href="/about" className="hover:text-foreground transition font-semibold text-coral">DoraDAO</a>
             </div>
             <a
               href="https://discord.gg/CRaEtrtZ2v"
@@ -328,10 +360,10 @@ function Landing() {
           <p className="text-foreground/75 text-base md:text-lg max-w-xl">
             Creators, builders, PMs, marketers, designers — if you're curious about AI and ready to yap, you're in.
           </p>
-          <div className="mt-7 flex flex-wrap gap-2">
+          <div className="mt-7 flex flex-wrap gap-3 justify-center">
             {roles.map((r) => (
-              <span key={r.t} className="inline-flex items-center gap-2 rounded-full bg-white/70 border border-white/80 px-4 py-2 text-sm font-medium">
-                <r.i className="h-3.5 w-3.5 text-coral" /> {r.t}
+              <span key={r.t} className="inline-flex items-center justify-center gap-2 rounded-full bg-white/70 border border-white/80 px-4 py-3 text-sm font-medium min-w-[140px] text-center">
+                <r.i className="h-4 w-4 text-coral shrink-0" /> <span>{r.t}</span>
               </span>
             ))}
           </div>
@@ -367,16 +399,16 @@ function Landing() {
             </div>
             <div>
               <span className="chapter-num">this year, week by week</span>
-              <div className="mt-3 grid sm:grid-cols-2 gap-3">
+              <div className="mt-3 grid sm:grid-cols-2 gap-4">
                 {weeks.map((w, i) => (
-                  <div key={w.t} className="flex gap-3 p-4 rounded-2xl bg-white/65 border border-white/80 shadow-soft">
-                    <div className="shrink-0 h-9 w-9 rounded-full bg-coral grid place-items-center text-primary-foreground shadow-glow font-mono text-[11px]">
+                  <div key={w.t} className="flex flex-col gap-3 p-5 rounded-2xl bg-white/65 border border-white/80 shadow-soft h-full min-h-[200px]">
+                    <div className="shrink-0 h-10 w-10 rounded-full bg-coral grid place-items-center text-primary-foreground shadow-glow font-mono text-[12px] font-bold">
                       0{i + 1}
                     </div>
                     <div>
-                      <div className="text-[10px] uppercase tracking-widest text-foreground/50 font-mono">{w.w}</div>
-                      <div className="font-display font-semibold text-base mt-0.5">{w.t}</div>
-                      <div className="text-xs text-foreground/70 mt-1 leading-snug">{w.d}</div>
+                      <div className="text-[10px] uppercase tracking-widest text-foreground/50 font-mono font-semibold">{w.w}</div>
+                      <div className="font-display font-bold text-lg mt-1">{w.t}</div>
+                      <div className="text-sm text-foreground/70 mt-2 leading-relaxed">{w.d}</div>
                     </div>
                   </div>
                 ))}
@@ -499,7 +531,7 @@ function Landing() {
                 {[...peek, ...peek, ...peek].map((p, i) => (
                   <a
                     key={`${row}-${i}`}
-                    href="https://x.com/dora_dao" target="_blank" rel="noreferrer"
+                    href="https://x.com/connectdoradao" target="_blank" rel="noreferrer"
                     className={`group relative h-36 w-56 md:h-44 md:w-72 shrink-0 overflow-hidden rounded-2xl shadow-card bg-gradient-to-br ${p.grad}`}
                   >
                     <div className="absolute inset-0 grid-lines opacity-30" />
@@ -527,15 +559,14 @@ function Landing() {
         >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {speakers.map((s, i) => {
-              const initials = s.n.split(" ").map((w) => w[0]).join("").slice(0, 2);
               return (
                 <a
-                  key={s.n} href="https://x.com/dora_dao" target="_blank" rel="noreferrer"
-                  className="rounded-2xl bg-white/10 border border-white/15 p-4 hover:-translate-y-1 hover:bg-white/15 transition group"
+                  key={s.n} href="/voices"
+                  className="group rounded-2xl bg-white/10 border border-white/15 p-4 transition-transform duration-300 hover:-translate-y-2 hover:bg-white/15 shadow-soft"
                 >
                   <div className={`aspect-square rounded-xl bg-gradient-to-br ${speakerGrads[i % speakerGrads.length]} grid place-items-center text-white font-display text-3xl font-bold shadow-glow relative overflow-hidden`}>
                     <div className="absolute inset-0 grid-lines opacity-25" />
-                    <span className="relative drop-shadow-md">{initials}</span>
+                    <span className="relative drop-shadow-md">{getInitials(s.n)}</span>
                   </div>
                   <div className="mt-3 flex items-center justify-between text-[10px] text-white/50 font-mono">
                     <span>#0{i + 1}</span>
@@ -549,11 +580,109 @@ function Landing() {
           </div>
           <div className="mt-8">
             <a
-              href="https://x.com/dora_dao" target="_blank" rel="noreferrer"
+              href="/voices"
               className="inline-flex items-center gap-2 rounded-full bg-white/15 border border-white/25 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/25 transition"
             >
               See more voices <ArrowRight className="h-4 w-4" />
             </a>
+          </div>
+        </Chapter>
+
+        {/* WHAT TO EXPECT SECTION */}
+        <Chapter
+          kicker="what to expect"
+          title={<>Your <span className="text-coral">5-week journey</span>.</>}
+        >
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {whatToExpect.map((item) => (
+              <div key={item.title} className="group rounded-2xl bg-white/65 border border-white/80 p-6 hover:-translate-y-1 hover:bg-white/85 transition h-full flex flex-col items-center justify-center text-center">
+                <div className="inline-flex items-center justify-center h-12 w-12 rounded-xl bg-coral text-primary-foreground shadow-glow mb-3">
+                  <item.icon className="h-6 w-6" />
+                </div>
+                <h4 className="font-display font-semibold text-lg text-foreground text-center">{item.title}</h4>
+                <p className="text-sm text-foreground/70 mt-2 leading-relaxed text-center">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </Chapter>
+
+        {/* TIMELINE SECTION */}
+        <Chapter
+          kicker="the timeline"
+          wide
+          title={<>Mark your <span className="text-coral">calendar</span>.</>}
+        >
+          {/* Timeline Container */}
+          <div className="relative py-8">
+            <svg className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-full w-[120px] overflow-visible" viewBox="0 0 100 760" preserveAspectRatio="none" aria-hidden="true">
+              <path
+                d="M50 40 C72 120, 28 200, 50 260 S 82 380, 50 440 S 18 540, 50 620 S 78 720, 50 760"
+                className="timeline-curve"
+              />
+            </svg>
+
+            {/* Timeline items */}
+            <div className="space-y-12">
+              {timelineEvents.map((event, i) => {
+                const isLeft = i % 2 === 0;
+                return (
+                  <div
+                    key={event.title}
+                    className="animate-fade-in relative"
+                    style={{ animationDelay: `${i * 0.15}s` }}
+                  >
+                    <div className={`grid md:grid-cols-2 gap-8 items-center`}>
+                      {/* Left side content */}
+                      <div className={isLeft ? "md:col-span-1" : "md:col-span-1 md:col-start-2"}>
+                        {isLeft && (
+                          <div className="rounded-3xl bg-sunrise-soft border border-white/50 p-6 shadow-soft hover:shadow-lg hover:-translate-y-1 transition">
+                            <div className="text-xs uppercase tracking-widest font-bold text-coral mb-2 font-mono">{event.date}</div>
+                            <h3 className="font-display font-bold text-xl md:text-2xl text-foreground mb-3">{event.title}</h3>
+                            <p className="text-sm text-foreground/80 leading-relaxed">{event.desc}</p>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Center timeline dot */}
+                      <div className="hidden md:flex md:col-span-1 justify-center">
+                        <div className="relative">
+                          {/* Pulse effect */}
+                          <div className="absolute inset-0 bg-coral rounded-full animate-pulse" style={{ width: "20px", height: "20px" }} />
+                          {/* Main dot */}
+                          <div className="h-5 w-5 rounded-full bg-white border-4 border-coral shadow-glow relative z-10" />
+                        </div>
+                      </div>
+
+                      {/* Right side content */}
+                      <div className={!isLeft ? "md:col-span-1" : "md:col-span-1 md:col-start-1"}>
+                        {!isLeft && (
+                          <div className="rounded-3xl bg-sunrise-soft border border-white/50 p-6 shadow-soft hover:shadow-lg hover:-translate-y-1 transition">
+                            <div className="text-xs uppercase tracking-widest font-bold text-coral mb-2 font-mono">{event.date}</div>
+                            <h3 className="font-display font-bold text-xl md:text-2xl text-foreground mb-3">{event.title}</h3>
+                            <p className="text-sm text-foreground/80 leading-relaxed">{event.desc}</p>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Mobile timeline dot */}
+                    <div className="md:hidden absolute left-0 top-6 h-5 w-5 rounded-full bg-white border-4 border-coral shadow-glow -translate-x-2" />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </Chapter>
+
+        {/* FAQ SECTION */}
+        <Chapter
+          kicker="common questions"
+          title={<>Got <span className="text-coral">questions?</span></>}
+        >
+          <div className="space-y-3 max-w-2xl">
+            {faqs.map((faq, i) => (
+              <FAQItem key={i} question={faq.q} answer={faq.a} />
+            ))}
           </div>
         </Chapter>
 
@@ -564,7 +693,7 @@ function Landing() {
           title={<>Powered by an <span className="text-coral">incredible crew</span>.</>}
         >
           <p className="text-foreground/70 max-w-xl text-sm">Company partners + community partners making GWY happen.</p>
-          <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2.5">
+          <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
             {partnersList.map((p, i) => {
               const initial = p.n[0];
               const kindColor =
@@ -572,12 +701,12 @@ function Landing() {
                 p.kind === "Investor" ? "text-[oklch(0.55_0.2_290)]" :
                 "text-[oklch(0.62_0.18_340)]";
               return (
-                <div key={p.n} className="group aspect-[3/2] rounded-2xl bg-white/65 border border-white/80 flex flex-col items-center justify-center text-center px-3 hover:-translate-y-1 hover:bg-white/85 transition relative overflow-hidden">
+                <div key={p.n} className="group aspect-square rounded-2xl bg-white/65 border border-white/80 flex flex-col items-center justify-center text-center px-4 py-6 hover:-translate-y-1 hover:bg-white/85 transition relative overflow-hidden">
                   <div className={`absolute -top-4 -right-4 h-14 w-14 rounded-full bg-gradient-to-br ${speakerGrads[i % speakerGrads.length]} opacity-30 blur-xl`} />
-                  <div className="font-display font-bold text-lg md:text-xl text-foreground/90 leading-tight">
+                  <div className="font-display font-bold text-base md:text-lg text-foreground/90 leading-tight text-center">
                     <span className="text-coral">{initial}</span>{p.n.slice(1)}
                   </div>
-                  <div className={`text-[9px] uppercase tracking-wider mt-1 font-mono font-semibold ${kindColor}`}>
+                  <div className={`text-[8px] uppercase tracking-wider mt-2 font-mono font-semibold ${kindColor}`}>
                     ✿ {p.kind}
                   </div>
                 </div>
