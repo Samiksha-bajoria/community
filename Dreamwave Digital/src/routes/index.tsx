@@ -6,6 +6,9 @@ import beachKit from "@/assets/beach-kit.png";
 import beachWalkers from "@/assets/beach-walkers.png";
 import { CursorTrail } from "@/components/CursorTrail";
 import { Countdown } from "@/components/Countdown";
+import { ScrollToTop } from "@/components/ScrollToTop";
+import { SpeakersShowcase } from "@/components/SpeakersShowcase";
+import { SponsorsSection } from "@/components/SponsorsCarousel";
 import {
   Sparkles,
   ArrowUpRight,
@@ -34,7 +37,7 @@ import {
   Lightbulb,
   Users,
 } from "lucide-react";
-import { speakerGrads, homeSpeakers, getInitials } from "@/lib/voices";
+import { speakerGrads, homeSpeakers, allSpeakers, getInitials, pastSponsors } from "@/lib/voices";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -557,34 +560,42 @@ function Landing() {
           dark
           title={<>Speakers &amp; <span className="text-coral">mentors</span>.</>}
         >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {speakers.map((s, i) => {
-              return (
-                <a
-                  key={s.n} href="/voices"
-                  className="group rounded-2xl bg-white/10 border border-white/15 p-4 transition-transform duration-300 hover:-translate-y-2 hover:bg-white/15 shadow-soft"
-                >
-                  <div className={`aspect-square rounded-xl bg-gradient-to-br ${speakerGrads[i % speakerGrads.length]} grid place-items-center text-white font-display text-3xl font-bold shadow-glow relative overflow-hidden`}>
-                    <div className="absolute inset-0 grid-lines opacity-25" />
-                    <span className="relative drop-shadow-md">{getInitials(s.n)}</span>
-                  </div>
-                  <div className="mt-3 flex items-center justify-between text-[10px] text-white/50 font-mono">
-                    <span>#0{i + 1}</span>
-                    <ArrowUpRight className="h-3.5 w-3.5 group-hover:text-coral transition" />
-                  </div>
-                  <div className="mt-0.5 font-display font-semibold text-sm text-white">{s.n}</div>
-                  <div className="text-xs text-white/65">{s.r}</div>
-                </a>
-              );
-            })}
+          <p className="text-white/70 text-base mb-8 max-w-2xl">
+            Learn from visionary creators, founders, and leaders shaping the future of AI and the creator economy.
+          </p>
+          <div className="mb-8">
+            <h3 className="text-white font-display font-semibold text-lg mb-4">Featured Speakers</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {speakers.map((s, i) => {
+                return (
+                  <a
+                    key={s.n} href="/voices"
+                    className="group rounded-2xl bg-white/10 border border-white/15 p-4 transition-all duration-300 hover:-translate-y-2 hover:bg-white/15 shadow-soft hover:shadow-glow animate-fade-in"
+                    style={{ animationDelay: `${i * 0.05}s` }}
+                  >
+                    <div className={`aspect-square rounded-xl bg-gradient-to-br ${speakerGrads[i % speakerGrads.length]} grid place-items-center text-white font-display text-3xl font-bold shadow-glow relative overflow-hidden group-hover:scale-105 transition-transform duration-300`}>
+                      <div className="absolute inset-0 grid-lines opacity-25" />
+                      <span className="relative drop-shadow-md">{getInitials(s.n)}</span>
+                    </div>
+                    <div className="mt-3 flex items-center justify-between text-[10px] text-white/50 font-mono">
+                      <span>#0{i + 1}</span>
+                      <ArrowUpRight className="h-3.5 w-3.5 group-hover:text-coral group-hover:rotate-45 transition-all duration-300" />
+                    </div>
+                    <div className="mt-0.5 font-display font-semibold text-sm text-white group-hover:text-coral transition-colors">{s.n}</div>
+                    <div className="text-xs text-white/65">{s.r}</div>
+                  </a>
+                );
+              })}
+            </div>
           </div>
-          <div className="mt-8">
+          <div className="flex items-center gap-3">
             <a
               href="/voices"
               className="inline-flex items-center gap-2 rounded-full bg-white/15 border border-white/25 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/25 transition"
             >
-              See more voices <ArrowRight className="h-4 w-4" />
+              See all {allSpeakers.length} voices <ArrowRight className="h-4 w-4" />
             </a>
+            <span className="text-xs text-white/50 font-mono">← Interactive profiles with speaker bios</span>
           </div>
         </Chapter>
 
@@ -686,6 +697,29 @@ function Landing() {
           </div>
         </Chapter>
 
+        {/* PAST SPONSORS SECTION — Creative sliding effect with mouse parallax */}
+        <Chapter
+          kicker="champions who believed"
+          title={<>Our <span className="text-coral">past sponsors</span> & partners.</>}
+        >
+          <p className="text-foreground/70 max-w-2xl mb-8">
+            The incredible organizations that powered our earlier cohorts and are shaping the future of creators and builders.
+          </p>
+          <div className="relative overflow-hidden">
+            {/* Background accent */}
+            <div className="absolute inset-0 bg-gradient-to-r from-coral/5 via-transparent to-coral/5 rounded-3xl pointer-events-none" />
+            
+            {/* Sponsors grid with staggered animations */}
+            <SponsorsSection sponsors={pastSponsors} />
+          </div>
+          
+          {/* Interactive note */}
+          <div className="mt-8 flex items-center gap-2 text-xs text-foreground/60 font-mono">
+            <span className="inline-block h-2 w-2 rounded-full bg-coral animate-pulse" />
+            Hover over sponsor cards to see parallax effect
+          </div>
+        </Chapter>
+
         {/* CHAPTER 06 — Partners (back to warm pre-dawn) */}
         <Chapter
           id="partners"
@@ -781,6 +815,9 @@ function Landing() {
             </div>
           </div>
         </footer>
+
+        {/* Scroll to Top Button */}
+        <ScrollToTop />
 
         <Sparkles className="hidden" />
       </div>
