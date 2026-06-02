@@ -4,6 +4,7 @@ interface SponsorCardProps {
   name: string;
   category: string;
   index: number;
+  image?: string;
   onMouseMove?: (e: React.MouseEvent<HTMLDivElement>) => void;
   onMouseLeave?: () => void;
 }
@@ -12,10 +13,12 @@ export function SponsorCard({
   name,
   category,
   index,
+  image,
   onMouseMove,
   onMouseLeave,
 }: SponsorCardProps) {
   const [offset, setOffset] = React.useState({ x: 0, y: 0 });
+  const [imageError, setImageError] = React.useState(false);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -66,16 +69,29 @@ export function SponsorCard({
         }}
       />
 
-      {/* Logo placeholder with gradient */}
-      <div
-        className={`h-16 w-16 rounded-xl bg-gradient-to-br ${gradient} flex items-center justify-center text-white font-display font-bold text-xl shadow-glow mb-3 relative z-10 group-hover:scale-110 transition-transform duration-300`}
-        style={{
-          transform: `translate(${offset.x * 0.4}px, ${offset.y * 0.4}px)`,
-          transition: "transform 0.1s ease-out",
-        }}
-      >
-        {name[0]}
-      </div>
+      {/* Logo placeholder with gradient or image */}
+      {image && !imageError ? (
+        <img
+          src={image}
+          alt={name}
+          className="h-16 w-16 rounded-xl object-contain shadow-glow mb-3 relative z-10 group-hover:scale-110 transition-transform duration-300"
+          style={{
+            transform: `translate(${offset.x * 0.4}px, ${offset.y * 0.4}px)`,
+            transition: "transform 0.1s ease-out",
+          }}
+          onError={() => setImageError(true)}
+        />
+      ) : (
+        <div
+          className={`h-16 w-16 rounded-xl bg-gradient-to-br ${gradient} flex items-center justify-center text-white font-display font-bold text-xl shadow-glow mb-3 relative z-10 group-hover:scale-110 transition-transform duration-300`}
+          style={{
+            transform: `translate(${offset.x * 0.4}px, ${offset.y * 0.4}px)`,
+            transition: "transform 0.1s ease-out",
+          }}
+        >
+          {name[0]}
+        </div>
+      )}
 
       {/* Content */}
       <div className="relative z-10">
@@ -100,7 +116,7 @@ export function SponsorCard({
 }
 
 interface SponsorsSectionProps {
-  sponsors: Array<{ n: string; cat: string }>;
+  sponsors: Array<{ n: string; cat: string; img?: string }>;
 }
 
 export function SponsorsSection({ sponsors }: SponsorsSectionProps) {
@@ -118,6 +134,7 @@ export function SponsorsSection({ sponsors }: SponsorsSectionProps) {
             name={sponsor.n}
             category={sponsor.cat}
             index={idx}
+            image={sponsor.img}
           />
         </div>
       ))}

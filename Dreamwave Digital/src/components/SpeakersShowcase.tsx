@@ -7,6 +7,7 @@ interface SpeakerDetailsProps {
   role: string;
   index: number;
   description?: string;
+  image?: string;
 }
 
 export function SpeakerDetailCard({
@@ -14,8 +15,11 @@ export function SpeakerDetailCard({
   role,
   index,
   description,
+  image,
 }: SpeakerDetailsProps) {
   const [isFlipped, setIsFlipped] = React.useState(false);
+  const [imageLoaded, setImageLoaded] = React.useState(true);
+  const [imageError, setImageError] = React.useState(false);
 
   return (
     <div
@@ -33,13 +37,26 @@ export function SpeakerDetailCard({
           backfaceVisibility: "hidden",
         } as React.CSSProperties}
       >
-        {/* Avatar */}
-        <div
-          className={`aspect-square rounded-xl bg-gradient-to-br ${speakerGrads[index % speakerGrads.length]} grid place-items-center text-white font-display text-4xl font-bold shadow-glow relative overflow-hidden mb-3`}
-        >
-          <div className="absolute inset-0 grid-lines opacity-25" />
-          <span className="relative drop-shadow-md">{getInitials(name)}</span>
-        </div>
+        {/* Avatar - Image or Gradient */}
+        {image && imageLoaded && !imageError ? (
+          <img
+            src={image}
+            alt={name}
+            className="aspect-square rounded-xl object-cover shadow-glow relative overflow-hidden mb-3 w-full"
+            onError={() => {
+              setImageError(true);
+              setImageLoaded(false);
+            }}
+            onLoad={() => setImageLoaded(true)}
+          />
+        ) : (
+          <div
+            className={`aspect-square rounded-xl bg-gradient-to-br ${speakerGrads[index % speakerGrads.length]} grid place-items-center text-white font-display text-4xl font-bold shadow-glow relative overflow-hidden mb-3`}
+          >
+            <div className="absolute inset-0 grid-lines opacity-25" />
+            <span className="relative drop-shadow-md">{getInitials(name)}</span>
+          </div>
+        )}
 
         {/* Info */}
         <div className="flex-1 flex flex-col justify-end">
@@ -83,7 +100,7 @@ export function SpeakerDetailCard({
 }
 
 interface SpeakersSectionProps {
-  speakers: Array<{ n: string; r: string }>;
+  speakers: Array<{ n: string; r: string; img?: string }>;
   title?: string;
 }
 
@@ -108,6 +125,7 @@ export function SpeakersShowcase({ speakers, title }: SpeakersSectionProps) {
               name={speaker.n}
               role={speaker.r}
               index={i}
+              image={speaker.img}
               description={`${speaker.n} is a leading innovator and mentor bringing expertise from ${speaker.r} to guide the next generation of creators and builders.`}
             />
           </div>

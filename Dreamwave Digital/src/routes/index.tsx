@@ -758,7 +758,7 @@ function Landing() {
           {/* Interactive note */}
           <div className="mt-8 flex items-center gap-2 text-xs text-foreground/60 font-mono">
             <span className="inline-block h-2 w-2 rounded-full bg-coral animate-pulse" />
-            Hover over sponsor cards to see parallax effect
+            Hover to bloom our sponsors' minds with love and gratitude ✿
           </div>
         </Chapter>
 
