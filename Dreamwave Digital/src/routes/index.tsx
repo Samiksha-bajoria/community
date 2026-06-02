@@ -91,14 +91,50 @@ const stats = [
 ];
 
 const peek = [
-  { cap: "Pre-conf kickoff", grad: "from-[oklch(0.82_0.18_45)] to-[oklch(0.72_0.22_15)]", emoji: "🌅" },
-  { cap: "Talent night", grad: "from-[oklch(0.75_0.2_350)] to-[oklch(0.55_0.2_320)]", emoji: "✨" },
-  { cap: "Bonfire build", grad: "from-[oklch(0.78_0.2_40)] to-[oklch(0.5_0.18_25)]", emoji: "🔥" },
-  { cap: "Yap session #4", grad: "from-[oklch(0.7_0.2_320)] to-[oklch(0.35_0.13_290)]", emoji: "🎙️" },
-  { cap: "Hack demo day", grad: "from-[oklch(0.8_0.16_60)] to-[oklch(0.65_0.22_35)]", emoji: "🚀" },
-  { cap: "Sunset socials", grad: "from-[oklch(0.85_0.14_55)] to-[oklch(0.7_0.21_15)]", emoji: "🌇" },
-  { cap: "Dora Delight", grad: "from-[oklch(0.88_0.12_25)] to-[oklch(0.72_0.18_350)]", emoji: "🍦" },
-  { cap: "Cohort pic", grad: "from-[oklch(0.75_0.18_350)] to-[oklch(0.6_0.2_320)]", emoji: "💖" },
+  {
+    cap: "Web3 Meetup",
+    grad: "from-[oklch(0.78_0.2_40)] to-[oklch(0.55_0.18_20)]",
+    emoji: "🤝",
+    img: "/src/assets/w3m.jpg",
+  },
+  {
+    cap: "DoraDelight Treat",
+    grad: "from-[oklch(0.88_0.12_50)] to-[oklch(0.72_0.2_25)]",
+    emoji: "🍦",
+    img: "/src/assets/doradelight.jpg",
+  },
+  {
+    cap: "Graduation Ceremony",
+    grad: "from-[oklch(0.7_0.2_320)] to-[oklch(0.45_0.15_290)]",
+    emoji: "🎓",
+    img: "/src/assets/grad.jpg",
+  },
+  {
+    cap: "GWY Conf",
+    grad: "from-[oklch(0.75_0.18_350)] to-[oklch(0.5_0.18_320)]",
+    emoji: "🎙️",
+    img: "/src/assets/gwy_conf.jpg",
+  },
+  {
+    cap: "GWY Night Camp Party",
+    grad: "from-[oklch(0.88_0.12_25)] to-[oklch(0.72_0.18_350)]",
+    emoji: "🏕️",
+    img: "/src/assets/night_camp.jpg",
+  },
+  {
+    cap: "Closing Ceremony",
+    grad: "from-[oklch(0.75_0.18_350)] to-[oklch(0.6_0.2_320)]", 
+    emoji: "💖",
+    img: "/src/assets/closing.jpg",
+  }
+  // { cap: "Pre-conf kickoff", grad: "from-[oklch(0.82_0.18_45)] to-[oklch(0.72_0.22_15)]", emoji: "🌅" },
+  // { cap: "Talent night", grad: "from-[oklch(0.75_0.2_350)] to-[oklch(0.55_0.2_320)]", emoji: "✨" },
+  // { cap: "Bonfire build", grad: "from-[oklch(0.78_0.2_40)] to-[oklch(0.5_0.18_25)]", emoji: "🔥" },
+  // { cap: "Yap session #4", grad: "from-[oklch(0.7_0.2_320)] to-[oklch(0.35_0.13_290)]", emoji: "🎙️" },
+  // { cap: "Hack demo day", grad: "from-[oklch(0.8_0.16_60)] to-[oklch(0.65_0.22_35)]", emoji: "🚀" },
+  // { cap: "Sunset socials", grad: "from-[oklch(0.85_0.14_55)] to-[oklch(0.7_0.21_15)]", emoji: "🌇" },
+  // { cap: "Dora Delight", grad: "from-[oklch(0.88_0.12_25)] to-[oklch(0.72_0.18_350)]", emoji: "🍦" },
+  // { cap: "Cohort pic", grad: "from-[oklch(0.75_0.18_350)] to-[oklch(0.6_0.2_320)]", emoji: "💖" },
 ];
 
 const speakers = homeSpeakers;
@@ -536,9 +572,15 @@ function Landing() {
                     key={`${row}-${i}`}
                     href="https://x.com/connectdoradao" target="_blank" rel="noreferrer"
                     className={`group relative h-36 w-56 md:h-44 md:w-72 shrink-0 overflow-hidden rounded-2xl shadow-card bg-gradient-to-br ${p.grad}`}
-                  >
-                    <div className="absolute inset-0 grid-lines opacity-30" />
-                    <div className="absolute top-3 left-3 text-3xl md:text-4xl drop-shadow-lg">{p.emoji}</div>
+                  >{p.img && (
+                      <img
+                        src={p.img}
+                        alt={p.cap}
+                        className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition"
+                      />
+                    )}
+                    {/* <div className="absolute inset-0 grid-lines opacity-30" />
+                    <div className="absolute top-3 left-3 text-3xl md:text-4xl drop-shadow-lg">{p.emoji}</div> */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
                     <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between">
                       <span className="rounded-full bg-white/95 px-2.5 py-1 text-[10px] font-semibold text-foreground truncate">
