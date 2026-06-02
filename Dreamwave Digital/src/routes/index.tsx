@@ -77,10 +77,10 @@ const roles = [
 ];
 
 const weeks = [
-  { w: "Week 01", t: "Tune in", d: "Live yap sessions with founders & researchers." },
-  { w: "Week 02", t: "Build out loud", d: "Ship demos. Post threads. Bounties drop." },
-  { w: "Week 03", t: "DoraHack", d: "A 7-day sprint — ship products, not projects." },
-  { w: "Week 04", t: "Launch & land", d: "Product Hunt day, IRL VC nights, Dora Delight." },
+  { w: "Week 01", t: "Unmute yourself", d: "More about 24hr Yap-In-public session." },
+  { w: "Week 02", t: "Create don't wait", d: "48 hrs  mini hackthon was launched." },
+  { w: "Week 03", t: " Take space. Don't ask", d: "Some sessions with bounties times." },
+  { w: "Week 04", t: " Touch grass, Make friends ", d: "Talk to 2 Dream Person , Talents night was organized" },
 ];
 
 const stats = [
@@ -171,11 +171,11 @@ const whatToExpect = [
 
 const timelineEvents = [
   { date: "3rd June", title: "Applications Open", desc: "GWY Fellowship Application Registration Open" },
-  { date: "15th June", title: "Fellowship Kickoff", desc: "Founder-led sessions, creator talks, weekly challenges and hands-on learning begin" },
+  { date: "15th June", title: "Application Reviewing", desc: "Applications are reviewed by our selection committee" },
   { date: "15th July", title: "Application Close", desc: "The final cohort gets selected based on creativity, ideas and builder energy" },
-  { date: "5th-8th Aug", title: "72 hours Hackathon", desc: "Build, ship and Launch on Product Hunt, Peerlist etc. User Acquisition Challenges" },
-  { date: "25th July", title: "Offline Experience", desc: "Top 50 creators move into the offline experience" },
-  { date: "25th Aug", title: "Offline 1 Week Cohort", desc: "Top 50 Creators will work on launching products, Networking & demos" },
+  { date: "5th-8th Aug", title: "Fellowship Kickoff", desc: "Founder-led sessions, creator talks, weekly challenges and hands-on learning begin" },
+  { date: "25th July", title: "72 hours Hackathon", desc: "Build, ship and Launch on Product Hunt, Peerlist etc. User Acquisition Challenges" },
+  { date: "25th Aug", title: "Surprise", desc: "To be revealed soon" },
   { date: "31st Aug", title: "Graduation", desc: "Showcase your products, celebrate your journey and launch your ideas into the world" },
 ];
 
@@ -357,9 +357,7 @@ function Landing() {
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/30 px-3 py-1.5">
                   <Globe className="h-3.5 w-3.5" /> Virtual + IRL
                 </span>
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/30 px-3 py-1.5">
-                  <MapPin className="h-3.5 w-3.5" /> Finale · Delhi
-                </span>
+                
               </div>
 
               <div className="mt-6 flex flex-wrap items-center gap-3">
@@ -376,19 +374,6 @@ function Landing() {
           </div>
         </section>
 
-        {/* PARTNERS MARQUEE — the horizon strip */}
-        <section className="relative mt-6 overflow-hidden">
-          <div className="mx-auto w-[min(94%,1100px)] mb-2 text-[10px] uppercase tracking-[0.3em] text-foreground/55 font-semibold">
-            ✿ supporting partners
-          </div>
-          <div className="flex animate-marquee whitespace-nowrap gap-10 py-3">
-            {[...partners, ...partners, ...partners].map((p, i) => (
-              <span key={i} className="font-display font-semibold text-xl md:text-2xl text-foreground/70">
-                {p} <span className="text-coral mx-2">✿</span>
-              </span>
-            ))}
-          </div>
-        </section>
 
         {/* INVITE — Who's invited */}
         <Chapter
@@ -426,18 +411,16 @@ function Landing() {
                 tools, you build a body of work and a circle of friends shipping alongside you.
               </p>
               <p className="mt-3 text-foreground/75 text-base leading-relaxed">
-                Cohort 2.0 runs across <strong>virtual sessions + IRL touchpoints</strong>, with a
-                finale in Delhi. Open to creators, builders, PMs, marketers and designers —
+                Cohort 2.0 runs across <strong>virtual sessions + IRL touchpoints</strong>. Open to creators, builders, PMs, marketers and designers —
                 anyone ready to play.
               </p>
               <div className="mt-5 flex flex-wrap gap-2 text-xs text-foreground/70">
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-white/60 border border-white/70 px-3 py-1.5"><Calendar className="h-3.5 w-3.5 text-coral"/> 4 weeks</span>
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-white/60 border border-white/70 px-3 py-1.5"><Globe className="h-3.5 w-3.5 text-coral"/> Virtual + IRL</span>
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-white/60 border border-white/70 px-3 py-1.5"><MapPin className="h-3.5 w-3.5 text-coral"/> Finale · Delhi</span>
               </div>
             </div>
             <div>
-              <span className="chapter-num">this year, week by week</span>
+              <span className="chapter-num">last year, week by week</span>
               <div className="mt-3 grid sm:grid-cols-2 gap-4">
                 {weeks.map((w, i) => (
                   <div key={w.t} className="flex flex-col gap-3 p-5 rounded-2xl bg-white/65 border border-white/80 shadow-soft h-full min-h-[200px]">
@@ -481,8 +464,8 @@ function Landing() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                   <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] text-white/90 font-mono">
-                    <span className="rounded-full bg-white/15 backdrop-blur px-2.5 py-1 border border-white/20">building · cohort 1.0</span>
-                    <span className="rounded-full bg-coral text-primary-foreground px-2.5 py-1 shadow-glow">7-day sprint</span>
+                    <span className="rounded-full bg-white/15 backdrop-blur px-2.5 py-1 border border-white/20">building · cohort 2.0</span>
+                    <span className="rounded-full bg-coral text-primary-foreground px-2.5 py-1 shadow-glow">72 hours sprint</span>
                   </div>
                 </div>
                 <div className="mt-3 grid grid-cols-3 gap-2 text-[10px] text-white/70 font-mono uppercase tracking-widest">
@@ -493,7 +476,7 @@ function Landing() {
               </div>
               <div>
                 <p className="text-white/80 max-w-md">
-                  A 7-day women-first build sprint inside the cohort. Form pods, ship on Product Hunt,
+                  A 72-hour women-first build sprint inside the cohort. From pods, ship on Product Hunt,
                   hype each other's launches — and win chunky prizes.
                 </p>
                 <ul className="mt-5 space-y-2.5">
@@ -501,7 +484,7 @@ function Landing() {
                     { i: Trophy, t: "Open tracks", d: "Agents, tools, content, commerce — anything useful." },
                     { i: Zap, t: "Product Hunt launch day", d: "We ship together. Threads, demos, comments — full hype mode." },
                     { i: Gift, t: "Prizes & perks", d: "Cash, credits, creator perks — partners stack soon." },
-                    { i: Heart, t: "Mentor office hours", d: "Founders & engineers on-call across the 7 days." },
+                    { i: Heart, t: "Mentor office hours", d: "Mentors available from eminent companies." },
                   ].map((d) => (
                     <li key={d.t} className="flex gap-3 rounded-2xl bg-white/10 border border-white/15 p-4">
                       <div className="shrink-0 h-9 w-9 rounded-full bg-coral grid place-items-center text-primary-foreground shadow-glow">
@@ -521,12 +504,7 @@ function Landing() {
                   >
                     Register for DoraHack <ArrowRight className="h-4 w-4" />
                   </a>
-                  <a
-                    href="https://discord.gg/CRaEtrtZ2v" target="_blank" rel="noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full bg-white/15 border border-white/25 px-5 py-3 text-sm font-semibold text-white hover:bg-white/25 transition"
-                  >
-                    Find a pod
-                  </a>
+                  
                 </div>
               </div>
             </div>
@@ -654,7 +632,7 @@ function Landing() {
         {/* WHAT TO EXPECT SECTION */}
         <Chapter
           kicker="what to expect"
-          title={<>Your <span className="text-coral">5-week journey</span>.</>}
+          title={<>Your <span className="text-coral">4-week journey</span>.</>}
         >
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
             {whatToExpect.map((item) => (
@@ -772,34 +750,7 @@ function Landing() {
           </div>
         </Chapter>
 
-        {/* CHAPTER 06 — Partners (back to warm pre-dawn) */}
-        <Chapter
-          id="partners"
-          kicker="the crew"
-          title={<>Powered by an <span className="text-coral">incredible crew</span>.</>}
-        >
-          <p className="text-foreground/70 max-w-xl text-sm">Company partners + community partners making GWY happen.</p>
-          <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-            {partnersList.map((p, i) => {
-              const initial = p.n[0];
-              const kindColor =
-                p.kind === "Company" ? "text-coral" :
-                p.kind === "Investor" ? "text-[oklch(0.55_0.2_290)]" :
-                "text-[oklch(0.62_0.18_340)]";
-              return (
-                <div key={p.n} className="group aspect-square rounded-2xl bg-white/65 border border-white/80 flex flex-col items-center justify-center text-center px-4 py-6 hover:-translate-y-1 hover:bg-white/85 transition relative overflow-hidden">
-                  <div className={`absolute -top-4 -right-4 h-14 w-14 rounded-full bg-gradient-to-br ${speakerGrads[i % speakerGrads.length]} opacity-30 blur-xl`} />
-                  <div className="font-display font-bold text-base md:text-lg text-foreground/90 leading-tight text-center">
-                    <span className="text-coral">{initial}</span>{p.n.slice(1)}
-                  </div>
-                  <div className={`text-[8px] uppercase tracking-wider mt-2 font-mono font-semibold ${kindColor}`}>
-                    ✿ {p.kind}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </Chapter>
+        
 
         {/* FINAL CHAPTER — dawn / last call */}
         <section id="apply" className="relative mx-auto w-[min(94%,1100px)] py-10 md:py-16">
