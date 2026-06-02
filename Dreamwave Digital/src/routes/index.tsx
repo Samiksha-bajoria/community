@@ -616,8 +616,18 @@ function Landing() {
                     style={{ animationDelay: `${i * 0.05}s` }}
                   >
                     <div className={`aspect-square rounded-xl bg-gradient-to-br ${speakerGrads[i % speakerGrads.length]} grid place-items-center text-white font-display text-3xl font-bold shadow-glow relative overflow-hidden group-hover:scale-105 transition-transform duration-300`}>
+                      {s.img ? (
+                      <img
+                        src={s.img}
+                        alt={s.n}
+                        className="absolute inset-0 w-full h-full object-cover object-top"
+                      />
+                    ) : (
+                      <>
                       <div className="absolute inset-0 grid-lines opacity-25" />
                       <span className="relative drop-shadow-md">{getInitials(s.n)}</span>
+                       </>
+                    )}
                     </div>
                     <div className="mt-3 flex items-center justify-between text-[10px] text-white/50 font-mono">
                       <span>#0{i + 1}</span>

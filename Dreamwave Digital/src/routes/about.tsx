@@ -10,6 +10,10 @@ import {
   Sun,
   Flower2,
 } from "lucide-react";
+import girlsWhoYap from "@/assets/GWY.jpg";
+import gwyImg from "@/assets/gwy.jpg";
+import doraHacksImg from "@/assets/dorahacks.jpg";
+import w3mImg from "@/assets/w3m.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -48,18 +52,21 @@ const doraPrograms = [
     title: "Girls Who Yap",
     desc: "A women-led fellowship empowering creators to demystify AI, ship in public, and find their people.",
     emoji: "👩‍💻",
+    img: gwyImg,   
   },
   {
     icon: Zap,
     title: "DoraHacks",
     desc: "Global builder hackathons where innovators come together to ship products, not just ideas.",
     emoji: "🔨",
+    img: doraHacksImg,
   },
   {
     icon: Globe,
     title: "W3M",
     desc: "Where Web3 meets AI — exploring the intersection of decentralization and intelligent systems.",
     emoji: "🌐",
+    img: w3mImg,
   },
 ];
 
@@ -187,11 +194,17 @@ function About() {
           <div className="grid md:grid-cols-2 gap-10 items-center">
             <div>
               <span className="text-xs uppercase tracking-widest text-coral font-semibold">Our Mission</span>
-              <h2 className="mt-3 font-display font-bold text-3xl md:text-4xl leading-tight text-foreground">
+              {/* <h2 className="mt-3 font-display font-bold text-3xl md:text-4xl leading-tight text-foreground">
                 To build <span className="text-coral">bridges</span>, not just tools.
               </h2>
               <p className="mt-4 text-foreground/75 text-lg leading-relaxed">
                 We enable users from all walks of life to engage with emerging tech in meaningful, real-world ways. We believe AI should empower communities, not exclude them.
+              </p> */}
+              <h2 className="mt-3 font-display font-bold text-3xl md:text-4xl leading-tight text-foreground">
+                Our name is a nod to <span className="text-coral">Dora the Explorer</span>.
+              </h2>
+              <p className="mt-4 text-foreground/75 text-lg leading-relaxed">
+                The ultimate symbol of fearless curiosity. Dora questioned everything without embarrassment or fear of judgment. That is our exact DNA — we believe groundbreaking innovation always begins with a simple, unafraid question.
               </p>
               <div className="mt-8 space-y-4">
                 <div className="flex gap-3 items-start">
@@ -218,8 +231,13 @@ function About() {
               </div>
             </div>
             <div className="relative">
-              <div className="bg-white/60 rounded-3xl p-8 border border-white/80 shadow-soft">
-                {illustration}
+            <div className="bg-white/30 rounded-2xl p-0 border border-white/40 shadow-soft overflow-hidden">              {/* <div className="bg-white/60 rounded-3xl p-8 border border-white/80 shadow-soft"> */}
+                {/* {illustration} */}
+                <img
+                    src={girlsWhoYap}
+                    alt="DoraDAO community"
+                    className="w-full h-full object-c rounded-2xl"
+                />
               </div>
             </div>
           </div>
@@ -236,16 +254,28 @@ function About() {
           <div className="grid md:grid-cols-3 gap-6">
             {doraPrograms.map((prog) => (
               <div
-                key={prog.title}
-                className="group rounded-2xl bg-white/65 border border-white/80 p-8 hover:-translate-y-1 hover:bg-white/85 transition h-full flex flex-col items-center justify-center text-center"
-              >
-                <span className="text-5xl mb-4">{prog.emoji}</span>
-                <div className="inline-flex items-center justify-center h-14 w-14 rounded-xl bg-coral text-primary-foreground shadow-glow mb-4">
-                  <prog.icon className="h-7 w-7" />
+                  key={prog.title}
+                  className="group relative rounded-2xl overflow-hidden border border-white/20 hover:-translate-y-1 transition h-full flex flex-col items-center justify-center text-center min-h-[280px]"
+                >
+                  {/* Background image */}
+                  <img
+                    src={prog.img}
+                    alt={prog.title}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  {/* Dark overlay for text readability */}
+                  <div className="absolute inset-0 bg-black/55 group-hover:bg-black/45 transition" />
+                  
+                  {/* Content on top */}
+                  <div className="relative z-10 p-8 flex flex-col items-center">
+                    <span className="text-2xl mb-4">{prog.emoji}</span>
+                    <div className="inline-flex items-center justify-center h-14 w-14 rounded-xl bg-coral text-primary-foreground shadow-glow mb-4">
+                      <prog.icon className="h-7 w-7" />
+                    </div>
+                    <h3 className="font-display font-bold text-xl text-white">{prog.title}</h3>
+                    <p className="text-sm text-white/80 mt-3 leading-relaxed">{prog.desc}</p>
+                  </div>
                 </div>
-                <h3 className="font-display font-bold text-xl text-foreground">{prog.title}</h3>
-                <p className="text-sm text-foreground/70 mt-3 leading-relaxed">{prog.desc}</p>
-              </div>
             ))}
           </div>
         </section>
@@ -271,11 +301,18 @@ function About() {
         <section className="relative mx-auto w-[min(94%,1100px)] mb-12">
           <div className="rounded-3xl bg-white/65 border border-white/80 p-10 md:p-16">
             <span className="text-xs uppercase tracking-widest text-coral font-semibold">How We Roll</span>
-            <h2 className="mt-3 font-display font-bold text-3xl md:text-4xl text-foreground">
+            {/* <h2 className="mt-3 font-display font-bold text-3xl md:text-4xl text-foreground">
               Communities aren't just <span className="text-coral">built</span>, they're <span className="text-coral">lived</span>.
             </h2>
             <p className="mt-6 text-lg text-foreground/75 leading-relaxed max-w-3xl">
               From Girls Who Yap (our women-led fellowship) to DoraHacks (global builder hackathons) to W3M (where Web3 meets AI), our flagship events are a playground for bold ideas. We don't just talk about inclusion —we build it, every single day, with every single person in our community.
+            </p> */}
+            <h2 className="mt-3 font-display font-bold text-3xl md:text-4xl text-foreground">
+              We don't just build <span className="text-coral">technical systems</span>;<br/>
+              we build the pioneers who <span className="text-coral">run them</span>.
+            </h2>
+            <p className="mt-6 text-lg text-foreground/75 leading-relaxed max-w-3xl">
+              The Girls Initiative Fellowship is the heartbeat of this mission. Moving beyond basic tools, we engineer real pathways, forge global Web3 networks, and cultivate a fearless sisterhood of leaders — delivering borderless access, funding, and mentorship.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
