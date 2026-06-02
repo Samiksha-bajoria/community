@@ -275,7 +275,7 @@ function About() {
               Communities aren't just <span className="text-coral">built</span>, they're <span className="text-coral">lived</span>.
             </h2>
             <p className="mt-6 text-lg text-foreground/75 leading-relaxed max-w-3xl">
-              From Girls Who Yap (our women-led fellowship) to DoraHacks (global builder hackathons) to W3M (where Web3 meets AI), our flagship events are a playground for bold ideas. We don't just talk about inclusion—we build it, every single day, with every single person in our community.
+              From Girls Who Yap (our women-led fellowship) to DoraHacks (global builder hackathons) to W3M (where Web3 meets AI), our flagship events are a playground for bold ideas. We don't just talk about inclusion —we build it, every single day, with every single person in our community.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
