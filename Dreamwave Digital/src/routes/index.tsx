@@ -2,8 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import * as React from "react";
 import heroBeach from "@/assets/hero-beach.jpg";
 import hackCollage from "@/assets/hack-collage.jpg";
-import beachKit from "@/assets/beach-kit.png";
-import beachWalkers from "@/assets/beach-walkers.png";
 import { CursorTrail } from "@/components/CursorTrail";
 import { Countdown } from "@/components/Countdown";
 import { ScrollToTop } from "@/components/ScrollToTop";
@@ -77,10 +75,10 @@ const roles = [
 ];
 
 const weeks = [
-  { w: "Week 01", t: "Unmute yourself", d: "More about 24hr Yap-In-public session." },
-  { w: "Week 02", t: "Create don't wait", d: "48 hrs  mini hackthon was launched." },
-  { w: "Week 03", t: " Take space. Don't ask", d: "Some sessions with bounties times." },
-  { w: "Week 04", t: " Touch grass, Make friends ", d: "Talk to 2 Dream Person , Talents night was organized" },
+  { w: "Week 01", t: "Unmute yourself", d: "More about 24hr Yap-In-public session.", img: "/src/assets/w3m.jpg" },
+  { w: "Week 02", t: "Create don't wait", d: "48 hrs mini hackathon was launched.", img: "/src/assets/doradelight2.jpg" },
+  { w: "Week 03", t: "Take space. Don't ask", d: "Some sessions with bounties times.", img: "/src/assets/gwy_conf.jpg" },
+  { w: "Week 04", t: "Touch grass, Make friends", d: "Talk to 2 Dream Person, Talents night was organized", img: "/src/assets/closing.jpg" },
 ];
 
 const stats = [
@@ -127,14 +125,6 @@ const peek = [
     emoji: "💖",
     img: "/src/assets/closing.jpg",
   }
-  // { cap: "Pre-conf kickoff", grad: "from-[oklch(0.82_0.18_45)] to-[oklch(0.72_0.22_15)]", emoji: "🌅" },
-  // { cap: "Talent night", grad: "from-[oklch(0.75_0.2_350)] to-[oklch(0.55_0.2_320)]", emoji: "✨" },
-  // { cap: "Bonfire build", grad: "from-[oklch(0.78_0.2_40)] to-[oklch(0.5_0.18_25)]", emoji: "🔥" },
-  // { cap: "Yap session #4", grad: "from-[oklch(0.7_0.2_320)] to-[oklch(0.35_0.13_290)]", emoji: "🎙️" },
-  // { cap: "Hack demo day", grad: "from-[oklch(0.8_0.16_60)] to-[oklch(0.65_0.22_35)]", emoji: "🚀" },
-  // { cap: "Sunset socials", grad: "from-[oklch(0.85_0.14_55)] to-[oklch(0.7_0.21_15)]", emoji: "🌇" },
-  // { cap: "Dora Delight", grad: "from-[oklch(0.88_0.12_25)] to-[oklch(0.72_0.18_350)]", emoji: "🍦" },
-  // { cap: "Cohort pic", grad: "from-[oklch(0.75_0.18_350)] to-[oklch(0.6_0.2_320)]", emoji: "💖" },
 ];
 
 const speakers = homeSpeakers;
@@ -161,12 +151,34 @@ const socials = [
 ];
 
 const whatToExpect = [
-  { icon: Mic, title: "Creator & founders-led sessions", desc: "Learn from the best in the creator economy" },
-  { icon: Code2, title: "AI + content + product thinking", desc: "Hands-on workshops on AI tools and applications" },
-  { icon: Zap, title: "Weekly challenges", desc: "Build momentum with community-driven tasks" },
-  { icon: Star, title: "UGC content creation", desc: "Master the art of creating engaging content" },
-  { icon: Rocket, title: "Build real products", desc: "Go from idea to shipped product in weeks" },
-  { icon: Trophy, title: "Launch publicly", desc: "Ship on Product Hunt, Peerlist & beyond" },
+  {
+    week: "Week 01",
+    quest: "The Discomfort Quest",
+    theme: "Stepping out of your comfort zone.",
+    mission: "Girls Who Yap 2.0 Welcome Session.",
+    extra: { label: "After Dark", value: "Unfiltered late-night bonding." },
+  },
+  {
+    week: "Week 02",
+    quest: "The Social Quest",
+    theme: "Coding, collaboration, and high energy.",
+    mission: "DoraHacks 2.0 Hackathon.",
+    extra: { label: "The Clock", value: "72 hours of pure building." },
+  },
+  {
+    week: "Week 03",
+    quest: "The Uncensored Quest",
+    theme: "Saying the things you're not supposed to say!",
+    mission: "Deep-dive AI exploration sessions.",
+    extra: { label: "The Reward", value: "Live bounty hunts and cash prizes." },
+  },
+  {
+    week: "Week 04",
+    quest: "The Real-World Quest",
+    theme: "Stepping away from screens and celebrating.",
+    mission: "Touch grass, make friends, and onboard the world.",
+    extra: { label: "The Finale", value: "Crazy community quests, talent night, and Graduation." },
+  },
 ];
 
 const timelineEvents = [
@@ -218,23 +230,6 @@ function SkyDecor() {
       <div className="absolute -right-32 top-[40vh] h-96 w-96 rounded-full bg-[radial-gradient(circle,oklch(0.7_0.22_15/0.45),transparent_70%)] blur-3xl" />
       <div className="absolute -left-32 top-[70vh] h-96 w-96 rounded-full bg-[radial-gradient(circle,oklch(0.55_0.2_320/0.45),transparent_70%)] blur-3xl" />
       <div className="absolute left-1/3 bottom-[8vh] h-80 w-80 rounded-full bg-[radial-gradient(circle,oklch(0.85_0.18_50/0.5),transparent_70%)] blur-3xl" />
-    </div>
-  );
-}
-
-function HeroBeachDecor() {
-  // Beach props scoped to the hero card only — sit at the sand line, never overlap copy
-  return (
-    <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-32 md:h-40 overflow-hidden" aria-hidden>
-      <img
-        src={beachWalkers} alt="" width={260} height={170} loading="lazy"
-        className="absolute left-4 md:left-10 bottom-2 w-32 md:w-44 opacity-85 animate-float-slow"
-        style={{ filter: "drop-shadow(0 6px 14px oklch(0.2 0.08 30 / 0.55))" }}
-      />
-      <img
-        src={beachKit} alt="" width={180} height={180} loading="lazy"
-        className="absolute right-2 md:right-6 -bottom-3 w-24 md:w-32 opacity-95 animate-float drop-shadow-[0_10px_24px_oklch(0.2_0.08_30/0.5)]"
-      />
     </div>
   );
 }
@@ -370,7 +365,6 @@ function Landing() {
                 <Countdown />
               </div>
             </div>
-            <HeroBeachDecor />
           </div>
         </section>
 
@@ -411,7 +405,7 @@ function Landing() {
                 tools, you build a body of work and a circle of friends shipping alongside you.
               </p>
               <p className="mt-3 text-foreground/75 text-base leading-relaxed">
-                Cohort 2.0 runs across <strong>virtual sessions + IRL touchpoints</strong>. Open to creators, builders, PMs, marketers and designers —
+                Cohort 1.0 runs across <strong>virtual sessions + IRL touchpoints</strong>. Open to creators, builders, PMs, marketers and designers —
                 anyone ready to play.
               </p>
               <div className="mt-5 flex flex-wrap gap-2 text-xs text-foreground/70">
@@ -423,16 +417,31 @@ function Landing() {
               <span className="chapter-num">last year, week by week</span>
               <div className="mt-3 grid sm:grid-cols-2 gap-4">
                 {weeks.map((w, i) => (
-                  <div key={w.t} className="flex flex-col gap-3 p-5 rounded-2xl bg-white/65 border border-white/80 shadow-soft h-full min-h-[200px]">
-                    <div className="shrink-0 h-10 w-10 rounded-full bg-coral grid place-items-center text-primary-foreground shadow-glow font-mono text-[12px] font-bold">
+                  <div key={w.t} className="flex flex-col rounded-2xl bg-white/65 border border-white/80 shadow-soft h-full min-h-[200px] overflow-hidden">
+                  {/* Image at top */}
+                  {w.img && (
+                    <div className="h-24 w-full overflow-hidden shrink-0">
+                      <img
+                        src={w.img}
+                        alt={w.t}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
+                  {/* Content below */}
+                  <div className="flex flex-col gap-2 p-4 flex-1">
+                  <div className="flex items-center gap-2">
+                    <div className="shrink-0 h-8 w-8 rounded-full bg-coral grid place-items-center text-primary-foreground shadow-glow font-mono text-[11px] font-bold">
                       0{i + 1}
                     </div>
-                    <div>
-                      <div className="text-[10px] uppercase tracking-widest text-foreground/50 font-mono font-semibold">{w.w}</div>
-                      <div className="font-display font-bold text-lg mt-1">{w.t}</div>
-                      <div className="text-sm text-foreground/70 mt-2 leading-relaxed">{w.d}</div>
-                    </div>
+                    <div className="text-[10px] uppercase tracking-widest text-foreground/50 font-mono font-semibold">{w.w}</div>
                   </div>
+                  <div>
+                    <div className="font-display font-bold text-base mt-0.5">{w.t}</div>
+                    <div className="text-xs text-foreground/70 mt-1 leading-relaxed">{w.d}</div>
+                  </div>
+                </div>
+                </div>
                 ))}
               </div>
               <div className="mt-4 flex flex-wrap gap-x-3 gap-y-1.5 text-xs text-foreground/65">
@@ -535,7 +544,7 @@ function Landing() {
           <div className="mx-auto w-[min(94%,1100px)] mb-6">
             <span className="chapter-num text-white/70">interlude · moments</span>
             <h3 className="mt-2 font-display font-bold text-2xl md:text-3xl text-white max-w-xl">
-              Snapshots from <span className="text-coral">our members</span>.
+              Snapshots from <span className="text-coral drop-shadow-[0_2px_8px_oklch(0.1_0.05_30/0.7)]">our members</span>.
             </h3>
           </div>
           <div className="space-y-4">
@@ -634,14 +643,29 @@ function Landing() {
           kicker="what to expect"
           title={<>Your <span className="text-coral">4-week journey</span>.</>}
         >
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {whatToExpect.map((item) => (
-              <div key={item.title} className="group rounded-2xl bg-white/65 border border-white/80 p-6 hover:-translate-y-1 hover:bg-white/85 transition h-full flex flex-col items-center justify-center text-center">
-                <div className="inline-flex items-center justify-center h-12 w-12 rounded-xl bg-coral text-primary-foreground shadow-glow mb-3">
-                  <item.icon className="h-6 w-6" />
+          <div className="grid sm:grid-cols-2 gap-4">
+            {whatToExpect.map((item, i) => (
+              <div key={item.quest} className="group rounded-2xl bg-white/65 border border-white/80 p-6 hover:-translate-y-1 hover:bg-white/85 transition flex flex-col gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="shrink-0 h-10 w-10 rounded-full bg-coral grid place-items-center text-primary-foreground shadow-glow font-mono text-[12px] font-bold">
+                    0{i + 1}
+                  </div>
+                  <div className="text-[10px] uppercase tracking-widest text-foreground/50 font-mono font-semibold">{item.week}</div>
                 </div>
-                <h4 className="font-display font-semibold text-lg text-foreground text-center">{item.title}</h4>
-                <p className="text-sm text-foreground/70 mt-2 leading-relaxed text-center">{item.desc}</p>
+                <div>
+                  <h4 className="font-display font-bold text-xl text-foreground">{item.quest}</h4>
+                  <p className="text-sm text-foreground/60 mt-1 italic">{item.theme}</p>
+                </div>
+                <div className="mt-1 space-y-1.5 text-sm">
+                  <div className="flex gap-2">
+                    <span className="text-coral font-semibold shrink-0">The Mission:</span>
+                    <span className="text-foreground/75">{item.mission}</span>
+                  </div>
+                  <div className="flex gap-2">
+                    <span className="text-coral font-semibold shrink-0">{item.extra.label}:</span>
+                    <span className="text-foreground/75">{item.extra.value}</span>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
