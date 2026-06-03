@@ -102,9 +102,20 @@ function Voices() {
                   key={speaker.n}
                   className="group rounded-[2rem] bg-white/10 border border-white/15 p-6 shadow-soft transition-transform duration-300 hover:-translate-y-2 hover:bg-white/20"
                 >
-                  <div className={`aspect-square rounded-3xl bg-gradient-to-br ${speakerGrads[i % speakerGrads.length]} grid place-items-center text-white font-display text-4xl font-bold shadow-glow overflow-hidden`}>
-                    <span className="relative drop-shadow-lg">{getInitials(speaker.n)}</span>
-                  </div>
+                  <div className={`aspect-square rounded-3xl bg-gradient-to-br ${speakerGrads[i % speakerGrads.length]} grid place-items-center text-white font-display text-4xl font-bold shadow-glow relative overflow-hidden`}>
+                  {speaker.img ? (
+                    <img
+                      src={speaker.img}
+                      alt={speaker.n}
+                      className="absolute inset-0 w-full h-full object-cover object-top"
+                    />
+                  ) : (
+                    <>
+                      <div className="absolute inset-0 grid-lines opacity-25" />
+                      <span className="relative drop-shadow-lg">{getInitials(speaker.n)}</span>
+                    </>
+                  )}
+                </div>
                   <div className="mt-4">
                     <div className="text-base font-display font-semibold text-foreground">{speaker.n}</div>
                     <div className="mt-1 text-sm text-foreground/70 leading-snug">{speaker.r}</div>

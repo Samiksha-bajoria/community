@@ -14,11 +14,12 @@ import girlsWhoYap from "@/assets/GWY.jpg";
 import gwyImg from "@/assets/gwy.jpg";
 import doraHacksImg from "@/assets/dorahacks.jpg";
 import w3mImg from "@/assets/w3m.jpg";
+import doradao from "@/assets/doradao.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About DoraDAO — Building Bridges, Not Just Tools" },
+      // { title: "About DoraDAO — Building Bridges, Not Just Tools" },
       {
         name: "description",
         content:
@@ -71,9 +72,9 @@ const doraPrograms = [
 ];
 
 const stats = [
-  { num: "15+", label: "Countries" },
-  { num: "10K+", label: "Community Members" },
-  { num: "100+", label: "Initiatives" },
+  { num: "11+", label: "Countries" },
+  { num: "5K+", label: "Community Members" },
+  { num: "6L+", label: "Social Reach" },
   { num: "∞", label: "Possibilities" },
 ];
 
@@ -174,16 +175,22 @@ function About() {
 
         {/* HERO */}
         <section className="relative mx-auto w-[min(94%,1100px)] mt-8 mb-12">
-          <div className="relative overflow-hidden rounded-3xl shadow-card bg-white/65 border border-white/80 p-12 md:p-20">
-            <div className="max-w-3xl">
-              <span className="font-hand text-3xl md:text-5xl text-coral drop-shadow-lg">
+          <div className="relative overflow-hidden rounded-3xl shadow-card min-h-[60vh] flex items-end">
+            <img
+              src={girlsWhoYap}
+              alt="DoraDAO community"
+              className="absolute inset-0 w-full h-full object-cover object-top"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/70" />
+            <div className="relative z-10 p-12 md:p-20 max-w-3xl">
+              {/* <span className="font-hand text-3xl md:text-5xl text-[oklch(0.95_0.15_95)] drop-shadow-lg">
                 Meet DoraDAO <Flower2 className="inline h-8 w-8" />
               </span>
-              <h1 className="mt-4 font-display font-extrabold text-4xl md:text-6xl leading-tight text-foreground drop-shadow-md">
+              <h1 className="mt-4 font-display font-extrabold text-4xl md:text-6xl leading-tight text-white drop-shadow-md">
                 Building <span className="text-coral">bridges</span>, not just tools.
-              </h1>
-              <p className="mt-6 text-lg text-foreground/80 leading-relaxed max-w-2xl">
-                A purpose-driven, non-profit parent community dedicated to making emerging tech accessible and inclusive. Rooted in Asia and the Middle East, we've grown into a grassroots movement across 15+ countries.
+              </h1> */}
+              <p className="mt-6 text-lg text-white/85 leading-relaxed max-w-2xl">
+                A purpose-driven, non-profit parent community ...
               </p>
             </div>
           </div>
@@ -193,48 +200,19 @@ function About() {
         <section className="relative mx-auto w-[min(94%,1100px)] mb-12">
           <div className="grid md:grid-cols-2 gap-10 items-center">
             <div>
-              <span className="text-xs uppercase tracking-widest text-coral font-semibold">Our Mission</span>
-              {/* <h2 className="mt-3 font-display font-bold text-3xl md:text-4xl leading-tight text-foreground">
-                To build <span className="text-coral">bridges</span>, not just tools.
-              </h2>
-              <p className="mt-4 text-foreground/75 text-lg leading-relaxed">
-                We enable users from all walks of life to engage with emerging tech in meaningful, real-world ways. We believe AI should empower communities, not exclude them.
-              </p> */}
+              <span className="text-xs uppercase tracking-widest text-coral font-bold">Our Mission</span>
               <h2 className="mt-3 font-display font-bold text-3xl md:text-4xl leading-tight text-foreground">
-                Our name is a nod to <span className="text-coral">Dora the Explorer</span>.
+                Our name is a nod to <span className="text-coral drop-shadow-[0_2px_8px_oklch(0.1_0.05_30/0.7)]">Dora the Explorer</span>.
               </h2>
               <p className="mt-4 text-foreground/75 text-lg leading-relaxed">
                 The ultimate symbol of fearless curiosity. Dora questioned everything without embarrassment or fear of judgment. That is our exact DNA — we believe groundbreaking innovation always begins with a simple, unafraid question.
               </p>
-              <div className="mt-8 space-y-4">
-                <div className="flex gap-3 items-start">
-                  <Heart className="h-6 w-6 text-coral shrink-0 mt-0.5" />
-                  <div>
-                    <h4 className="font-display font-semibold text-coral">Inclusive by Design</h4>
-                    <p className="text-sm text-foreground/70 mt-1">Tech for everyone, not just experts</p>
-                  </div>
-                </div>
-                <div className="flex gap-3 items-start">
-                  <Globe className="h-6 w-6 text-coral shrink-0 mt-0.5" />
-                  <div>
-                    <h4 className="font-display font-semibold text-coral">Globally Rooted</h4>
-                    <p className="text-sm text-foreground/70 mt-1">Growing across Asia, Middle East & beyond</p>
-                  </div>
-                </div>
-                <div className="flex gap-3 items-start">
-                  <Zap className="h-6 w-6 text-coral shrink-0 mt-0.5" />
-                  <div>
-                    <h4 className="font-display font-semibold text-coral">Community-First</h4>
-                    <p className="text-sm text-foreground/70 mt-1">Communities are lived, not just built</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="relative">
+            </div> 
+            <div className="relative"> 
             <div className="bg-white/30 rounded-2xl p-0 border border-white/40 shadow-soft overflow-hidden">              {/* <div className="bg-white/60 rounded-3xl p-8 border border-white/80 shadow-soft"> */}
                 {/* {illustration} */}
                 <img
-                    src={girlsWhoYap}
+                    src={doradao}
                     alt="DoraDAO community"
                     className="w-full h-full object-c rounded-2xl"
                 />
@@ -301,12 +279,6 @@ function About() {
         <section className="relative mx-auto w-[min(94%,1100px)] mb-12">
           <div className="rounded-3xl bg-white/65 border border-white/80 p-10 md:p-16">
             <span className="text-xs uppercase tracking-widest text-coral font-semibold">How We Roll</span>
-            {/* <h2 className="mt-3 font-display font-bold text-3xl md:text-4xl text-foreground">
-              Communities aren't just <span className="text-coral">built</span>, they're <span className="text-coral">lived</span>.
-            </h2>
-            <p className="mt-6 text-lg text-foreground/75 leading-relaxed max-w-3xl">
-              From Girls Who Yap (our women-led fellowship) to DoraHacks (global builder hackathons) to W3M (where Web3 meets AI), our flagship events are a playground for bold ideas. We don't just talk about inclusion —we build it, every single day, with every single person in our community.
-            </p> */}
             <h2 className="mt-3 font-display font-bold text-3xl md:text-4xl text-foreground">
               We don't just build <span className="text-coral">technical systems</span>;<br/>
               we build the pioneers who <span className="text-coral">run them</span>.
