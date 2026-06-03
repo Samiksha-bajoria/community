@@ -183,10 +183,10 @@ const whatToExpect = [
 
 const timelineEvents = [
   { date: "3rd June", title: "Applications Open", desc: "GWY Fellowship Application Registration Open" },
-  { date: "15th June", title: "Application Reviewing", desc: "Applications are reviewed by our selection committee" },
+  { date: "15th June", title: "Applications under Review", desc: "Applications are reviewed by our selection committee" },
   { date: "15th July", title: "Application Close", desc: "The final cohort gets selected based on creativity, ideas and builder energy" },
   { date: "5th-8th Aug", title: "Fellowship Kickoff", desc: "Founder-led sessions, creator talks, weekly challenges and hands-on learning begin" },
-  { date: "25th July", title: "72 hours Hackathon", desc: "Build, ship and Launch on Product Hunt, Peerlist etc. User Acquisition Challenges" },
+  { date: "25th July", title: "DoraHack 2.0", desc: "Build, ship and Launch on Product Hunt, Peerlist etc. User Acquisition Challenges" },
   { date: "25th Aug", title: "Surprise", desc: "To be revealed soon" },
   { date: "31st Aug", title: "Graduation", desc: "Showcase your products, celebrate your journey and launch your ideas into the world" },
 ];
@@ -739,18 +739,7 @@ function Landing() {
           </div>
         </Chapter>
 
-        {/* FAQ SECTION */}
-        <Chapter
-          kicker="common questions"
-          title={<>Got <span className="text-coral">questions?</span></>}
-        >
-          <div className="space-y-3 max-w-2xl">
-            {faqs.map((faq, i) => (
-              <FAQItem key={i} question={faq.q} answer={faq.a} />
-            ))}
-          </div>
-        </Chapter>
-
+        
         {/* PAST SPONSORS SECTION — Creative sliding effect with mouse parallax */}
         <Chapter
           kicker="champions who believed"
@@ -774,7 +763,18 @@ function Landing() {
           </div>
         </Chapter>
 
-        
+        {/* FAQ SECTION */}
+        <Chapter
+          kicker="common questions"
+          title={<>Got <span className="text-coral">questions?</span></>}
+        >
+          <div className="space-y-3 max-w-2xl">
+            {faqs.map((faq, i) => (
+              <FAQItem key={i} question={faq.q} answer={faq.a} />
+            ))}
+          </div>
+        </Chapter>
+
 
         {/* FINAL CHAPTER — dawn / last call */}
         <section id="apply" className="relative mx-auto w-[min(94%,1100px)] py-10 md:py-16">
